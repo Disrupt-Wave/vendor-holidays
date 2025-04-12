@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<layouts scheme="3.0">
+    <layout name="vendor_holidays" type="vendor_holidays">
+        <block type="vendor_holidays" template="views/backend/vendor_holidays/manage.tpl" />
+    </layout>
+</layouts> 

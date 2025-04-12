@@ -1,0 +1,49 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CS-Cart\n"
+"POT-Creation-Date: 2023-04-10 12:00+0000\n"
+"PO-Revision-Date: 2023-04-10 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-KeywordsList: __;__n:1,2;__p:1c,2;__pn:1c,2,3;__(":1,2c;__(":1,2,3c\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "vendor_holidays"
+msgstr "Vendor Holidays"
+
+msgid "vendor_holidays.manage"
+msgstr "Manage Holidays"
+
+msgid "vendor_holidays.menu_title"
+msgstr "Vendor Holidays"
+
+msgid "vendor_holidays.menu_description"
+msgstr "Manage vendor holiday periods"
+
+msgid "add_holiday"
+msgstr "Add Holiday"
+
+msgid "new_holiday"
+msgstr "New Holiday"
+
+msgid "date_from"
+msgstr "Start Date"
+
+msgid "date_to"
+msgstr "End Date"
+
+msgid "holiday_updated_successfully"
+msgstr "Holiday updated successfully"
+
+msgid "holiday_deleted_successfully"
+msgstr "Holiday deleted successfully"
+
+msgid "vendor_on_holiday"
+msgstr "This vendor is currently on holiday. Please check back later." 

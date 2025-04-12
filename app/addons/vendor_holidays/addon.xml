@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<addon scheme="4.0">
+    <id>vendor_holidays</id>
+    <version>1.0</version>
+    <name>
+        <en>Vendor Holidays</en>
+    </name>
+    <description>
+        <en>Allows vendors to set holiday periods during which their products will not be available for purchase</en>
+    </description>
+    <priority>100</priority>
+    <position>100</position>
+    <has_icon>Y</has_icon>
+    <default_language>en</default_language>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+
+    <functions>
+        <item for="install">fn_vendor_holidays_install</item>
+        <item for="uninstall">fn_vendor_holidays_uninstall</item>
+    </functions>
+
+    <queries>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS ?:vendor_holidays (
+                holiday_id int(11) NOT NULL AUTO_INCREMENT,
+                vendor_id int(11) NOT NULL DEFAULT '0',
+                date_from date NOT NULL DEFAULT '0000-00-00',
+                date_to date NOT NULL DEFAULT '0000-00-00',
+                status char(1) NOT NULL DEFAULT 'A',
+                PRIMARY KEY (holiday_id),
+                KEY vendor_id (vendor_id)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            INSERT INTO ?:privileges (privilege, is_default, section_id) 
+            SELECT 'manage_vendor_holidays', 'Y', 'addons' 
+            FROM dual 
+            WHERE NOT EXISTS (SELECT 1 FROM ?:privileges WHERE privilege = 'manage_vendor_holidays');
+        </item>
+        <item for="install">
+            INSERT INTO ?:privileges (privilege, is_default, section_id) 
+            SELECT 'view_vendor_holidays', 'Y', 'addons' 
+            FROM dual 
+            WHERE NOT EXISTS (SELECT 1 FROM ?:privileges WHERE privilege = 'view_vendor_holidays');
+        </item>
+        <item for="uninstall">
+            DELETE FROM ?:privileges WHERE privilege IN ('manage_vendor_holidays', 'view_vendor_holidays');
+        </item>
+        <item for="uninstall">
+            DROP TABLE IF EXISTS ?:vendor_holidays;
+        </item>
+    </queries>
+
+    <hooks>
+        <item for="get_products">fn_vendor_holidays_get_products</item>
+        <item for="get_companies">fn_vendor_holidays_get_companies</item>
+        <item for="get_product_data_post">fn_vendor_holidays_get_product_data_post</item>
+    </hooks>
+
+    <settings edition_type="ROOT,ULT:VENDOR,MULTIVENDOR">
+        <sections>
+            <section id="general">
+                <name>
+                    <en>General</en>
+                </name>
+                <items>
+                    <item id="enable_holidays">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                        <name>
+                            <en>Enable vendor holidays</en>
+                        </name>
+                        <tooltip>
+                            <en>Allow vendors to set holiday periods</en>
+                        </tooltip>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+
+    <menu>
+        <item parent="companies" position="800" title="Vendor Holidays" href="vendor_holidays.manage" section="addons" />
+        <item parent="dashboard" position="800" title="Vendor Holidays" href="vendor_holidays.manage" section="addons" />
+    </menu>
+</addon>
